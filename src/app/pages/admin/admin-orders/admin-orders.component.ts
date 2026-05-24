@@ -134,7 +134,7 @@ export class AdminOrdersComponent implements OnInit {
 
   updateStatus(order: Order, status: string): void {
     this.orderService.updateStatus(order._id, status).subscribe(updated => {
-      const idx = this.orders.findIndex(o => o.id === order._id);
+      const idx = this.orders.findIndex(o => o._id === order._id);
       if (idx >= 0) this.orders[idx] = updated;
     });
   }
