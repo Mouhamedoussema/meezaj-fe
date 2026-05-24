@@ -1,0 +1,159 @@
+.page-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+
+  h1 { font-size: 2rem; }
+}
+
+.count {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+
+.loading-text, .empty-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding: var(--spacing-lg) 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+
+  th {
+    text-align: left;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+  }
+
+  tr:hover td { background: var(--color-bg-alt); }
+  tr.expanded td { background: var(--color-bg-alt); }
+}
+
+.order-id {
+  font-weight: 700;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+.contact-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  span:last-child {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+}
+
+.amount-cell { font-weight: 700; }
+
+.date-cell { color: var(--color-text-muted); font-size: 0.8rem; white-space: nowrap; }
+
+.status-select {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+
+  &:focus { border-color: var(--color-black); }
+
+  &[data-status="PENDING"] { color: #856404; }
+  &[data-status="CONFIRMED"] { color: #0c5460; }
+  &[data-status="SHIPPED"] { color: #004085; }
+  &[data-status="DELIVERED"] { color: #155724; }
+  &[data-status="CANCELLED"] { color: #721c24; }
+}
+
+.payment-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+
+  &[data-method="CARD"] { color: #004085; border-color: #b8daff; background: #cce5ff; }
+  &[data-method="CASH_ON_DELIVERY"] { color: #155724; border-color: #c3e6cb; background: #d4edda; }
+}
+
+.expand-btn {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+
+  &:hover { color: var(--color-black); }
+}
+
+.detail-row td {
+  background: #f9f8f6 !important;
+  padding: 0;
+}
+
+.order-detail {
+  padding: var(--spacing-sm) 1rem var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.detail-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.detail-group p {
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.order-item-row {
+  display: flex;
+  gap: var(--spacing-md);
+  font-size: 0.85rem;
+  color: var(--color-text);
+
+  span:first-child { font-weight: 600; min-width: 120px; }
+}

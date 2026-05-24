@@ -1,0 +1,110 @@
+.card {
+  cursor: pointer;
+  display: block;
+
+  &:hover .card-image img:first-child { opacity: 0; }
+  &:hover .img-hover { opacity: 1 !important; }
+  &:hover .card-quick-add { transform: translateY(0); }
+}
+
+.card-image {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  margin-bottom: var(--spacing-sm);
+
+  .card-quick-add {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(26, 26, 26, 0.88);
+    color: var(--color-white);
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--transition);
+  }
+
+  .img-hover {
+    opacity: 0;
+  }
+}
+
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-alt);
+
+  span {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    color: var(--color-border);
+    text-transform: uppercase;
+  }
+}
+
+.badge-soldout,
+.badge-featured {
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+}
+
+.badge-soldout {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.badge-featured {
+  background: transparent;
+  color: var(--color-black);
+  border: 1px solid var(--color-black);
+}
+
+.card-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-black);
+  margin-bottom: 0.25rem;
+}
+
+.card-price {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.card-sizes {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.size-dot {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}

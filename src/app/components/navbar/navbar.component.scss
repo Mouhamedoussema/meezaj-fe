@@ -1,0 +1,113 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background var(--transition), box-shadow var(--transition);
+  overflow: hidden;
+
+  &.scrolled {
+    background: var(--color-bg);
+    box-shadow: 0 1px 0 var(--color-border);
+  }
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-black);
+  text-transform: uppercase;
+}
+
+.nav-center {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  transition: color var(--transition);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+
+  &:hover,
+  &.active {
+    color: var(--color-black);
+    border-bottom-color: var(--color-black);
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--color-black);
+  transition: opacity var(--transition);
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+/* Progress bar */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-black);
+  transition: width 0.08s linear;
+  opacity: 0;
+  pointer-events: none;
+
+  &.visible { opacity: 1; }
+}
+
+/* Cart shake */
+@keyframes cartShake {
+  0%, 100% { transform: rotate(0deg); }
+  20%       { transform: rotate(-18deg); }
+  40%       { transform: rotate(18deg); }
+  60%       { transform: rotate(-10deg); }
+  80%       { transform: rotate(10deg); }
+}
+
+.cart-btn.shake { animation: cartShake 0.55s ease; }
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 0.6rem;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
