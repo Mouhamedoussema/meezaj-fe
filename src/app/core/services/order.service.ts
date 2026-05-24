@@ -18,11 +18,11 @@ export class OrderService {
     return this.http.get<Order[]>(this.url);
   }
 
-  getById(id: number): Observable<Order> {
+  getById(id: string): Observable<Order> {
     return this.http.get<Order>(`${this.url}/${id}`);
   }
 
-  updateStatus(id: number, status: string): Observable<Order> {
+  updateStatus(id: string, status: string): Observable<Order> {
     return this.http.patch<Order>(`${this.url}/${id}/status`, { status });
   }
 }

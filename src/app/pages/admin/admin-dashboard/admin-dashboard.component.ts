@@ -56,9 +56,9 @@ import { Product } from '../../../core/models/product.model';
               </tr>
             </thead>
             <tbody>
-              @for (order of recentOrders; track order.id) {
+              @for (order of recentOrders; track order._id) {
                 <tr>
-                  <td class="order-id">{{ order.id }}</td>
+                  <td class="order-id">{{ order._id }}</td>
                   <td>{{ order.customerName }}</td>
                   <td>{{ order.total | number:'1.2-2' }} TND</td>
                   <td><span class="status-badge" [attr.data-status]="order.status">{{ order.status }}</span></td>

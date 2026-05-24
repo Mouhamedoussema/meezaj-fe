@@ -187,7 +187,7 @@ import { CreateOrderRequest, PaymentMethod } from '../../core/models/order.model
           <div class="order-summary">
             <h2>Your Order</h2>
             <div class="summary-items">
-              @for (item of items; track item.product.id + item.size) {
+              @for (item of items; track item.product._id + item.size) {
                 <div class="summary-item">
                   <div class="summary-item-img">
                     @if (item.product.imageUrls?.length) {
@@ -340,7 +340,7 @@ export class CheckoutComponent implements OnInit {
       notes: v.notes ?? '',
       paymentMethod: this.selectedPayment,
       items: this.items.map(i => ({
-        product: { id: i.product.id },
+        productId: i.product._id,
         size: i.size,
         quantity: i.quantity
       }))
@@ -351,7 +351,7 @@ export class CheckoutComponent implements OnInit {
         const firstName = payload.customerName.split(' ')[0];
         this.cart.clear();
         this.submitting = false;
-        this.toast.show(`Thank you ${firstName}! Order #${order.id} confirmed — wear it with pride. 🇹🇳`);
+        this.toast.show(`Thank you ${firstName}! Your order is confirmed — wear it with pride. 🇹🇳`);
         this.router.navigate(['/']);
       },
       error: () => {

@@ -30,7 +30,7 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
         </div>
       } @else if (products.length) {
         <div class="products-grid">
-          @for (product of products; track product.id) {
+          @for (product of products; track product._id) {
             <app-product-card [product]="product" />
           }
         </div>

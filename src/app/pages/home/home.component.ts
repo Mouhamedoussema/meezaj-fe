@@ -41,7 +41,7 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
           </div>
         } @else if (featured.length) {
           <div class="products-grid">
-            @for (product of featured; track product.id; let i = $index) {
+            @for (product of featured; track product._id; let i = $index) {
               <div appReveal [delay]="i * 80">
                 <app-product-card [product]="product" />
               </div>

@@ -131,9 +131,9 @@ import { environment } from '../../../../environments/environment';
               </tr>
             </thead>
             <tbody>
-              @for (product of products; track product.id) {
+              @for (product of products; track product._id) {
                 <tr>
-                  <td>{{ product.id }}</td>
+                  <td>{{ product._id }}</td>
                   <td>
                     <div class="thumb">
                       @if (product.imageUrls?.length) {
@@ -158,7 +158,7 @@ import { environment } from '../../../../environments/environment';
                   </td>
                   <td class="action-cell">
                     <button class="action-btn edit" (click)="editProduct(product)">Edit</button>
-                    <button class="action-btn delete" (click)="deleteProduct(product.id)">Delete</button>
+                    <button class="action-btn delete" (click)="deleteProduct(product._id)">Delete</button>
                   </td>
                 </tr>
               }
@@ -173,7 +173,7 @@ export class AdminProductsComponent implements OnInit {
   products: Product[] = [];
   loading = true;
   showForm = false;
-  editingId: number | null = null;
+  editingId: string | null = null;
   saving = false;
   formError = '';
   formSubmitted = false;
@@ -225,7 +225,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   editProduct(product: Product): void {
-    this.editingId = product.id;
+    this.editingId = product._id;
     this.uploadedImages = [...(product.imageUrls ?? [])];
     this.formSubmitted = false;
     this.formError = '';
@@ -303,10 +303,10 @@ export class AdminProductsComponent implements OnInit {
     });
   }
 
-  deleteProduct(id: number): void {
+  deleteProduct(id: string): void {
     if (!confirm('Delete this product?')) return;
     this.productService.delete(id).subscribe({
-      next: () => { this.products = this.products.filter(p => p.id !== id); },
+      next: () => { this.products = this.products.filter(p => p._id !== id); },
       error: () => alert('Delete failed.')
     });
   }

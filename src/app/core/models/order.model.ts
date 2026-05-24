@@ -1,5 +1,5 @@
 export interface OrderItemRequest {
-  product: { id: number };
+  productId: string;
   size: string;
   quantity: number;
 }
@@ -20,7 +20,7 @@ export interface CreateOrderRequest {
 }
 
 export interface Order {
-  id: number;
+  _id: string;
   customerName: string;
   customerEmail: string;
   customerPhone: string;
@@ -37,8 +37,8 @@ export interface Order {
 }
 
 export interface OrderItem {
-  id: number;
-  product: { id: number; name: string; price: number };
+  _id: string;
+  product: { _id: string; name: string; price: number };
   size: string;
   quantity: number;
   unitPrice: number;

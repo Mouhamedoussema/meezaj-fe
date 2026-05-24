@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
   imports: [RouterLink, DecimalPipe],
   styleUrl: './product-card.component.scss',
   template: `
-    <article #cardEl class="card" [routerLink]="['/product', product.id]"
+    <article #cardEl class="card" [routerLink]="['/product', product._id]"
       (mousemove)="onMouseMove($event, cardEl)"
       (mouseleave)="onMouseLeave(cardEl)">
       <div class="card-image">

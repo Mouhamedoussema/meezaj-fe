@@ -24,7 +24,7 @@ export class CartService {
 
   add(product: Product, size: string, quantity = 1): void {
     const items = [...this.items];
-    const idx = items.findIndex(i => i.product.id === product.id && i.size === size);
+    const idx = items.findIndex(i => i.product._id === product._id && i.size === size);
     if (idx >= 0) {
       items[idx] = { ...items[idx], quantity: items[idx].quantity + quantity };
     } else {
@@ -33,15 +33,15 @@ export class CartService {
     this.persist(items);
   }
 
-  updateQuantity(productId: number, size: string, quantity: number): void {
+  updateQuantity(productId: string, size: string, quantity: number): void {
     const items = this.items
-      .map(i => i.product.id === productId && i.size === size ? { ...i, quantity } : i)
+      .map(i => i.product._id === productId && i.size === size ? { ...i, quantity } : i)
       .filter(i => i.quantity > 0);
     this.persist(items);
   }
 
-  remove(productId: number, size: string): void {
-    this.persist(this.items.filter(i => !(i.product.id === productId && i.size === size)));
+  remove(productId: string, size: string): void {
+    this.persist(this.items.filter(i => !(i.product._id === productId && i.size === size)));
   }
 
   clear(): void {

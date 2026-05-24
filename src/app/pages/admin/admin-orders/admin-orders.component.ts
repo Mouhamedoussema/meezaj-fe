@@ -39,9 +39,9 @@ const ORDER_STATUSES = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELL
               </tr>
             </thead>
             <tbody>
-              @for (order of orders; track order.id) {
-                <tr [class.expanded]="expandedId === order.id">
-                  <td class="order-id" (click)="toggle(order.id)">{{ order.id }}</td>
+              @for (order of orders; track order._id) {
+                <tr [class.expanded]="expandedId === order._id">
+                  <td class="order-id" (click)="toggle(order._id)">{{ order._id }}</td>
                   <td>
                     <strong>{{ order.customerName }}</strong>
                   </td>
@@ -67,12 +67,12 @@ const ORDER_STATUSES = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELL
                   </td>
                   <td class="date-cell">{{ order.createdAt | date:'MMM d' }}</td>
                   <td>
-                    <button class="expand-btn" (click)="toggle(order.id)">
-                      {{ expandedId === order.id ? '▲' : '▼' }}
+                    <button class="expand-btn" (click)="toggle(order._id)">
+                      {{ expandedId === order._id ? '▲' : '▼' }}
                     </button>
                   </td>
                 </tr>
-                @if (expandedId === order.id) {
+                @if (expandedId === order._id) {
                   <tr class="detail-row">
                     <td colspan="10">
                       <div class="order-detail">
@@ -90,7 +90,7 @@ const ORDER_STATUSES = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELL
                           <div class="detail-group">
                             <span class="detail-label">Items</span>
                             <div class="items-list">
-                              @for (item of order.items; track item.id) {
+                              @for (item of order.items; track item._id) {
                                 <div class="order-item-row">
                                   <span>{{ item.product?.name }}</span>
                                   <span>{{ item.size }}</span>
@@ -116,7 +116,7 @@ const ORDER_STATUSES = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELL
 export class AdminOrdersComponent implements OnInit {
   orders: Order[] = [];
   loading = true;
-  expandedId: number | null = null;
+  expandedId: string | null = null;
   statuses = ORDER_STATUSES;
 
   constructor(private orderService: OrderService) {}
@@ -128,13 +128,13 @@ export class AdminOrdersComponent implements OnInit {
     });
   }
 
-  toggle(id: number): void {
+  toggle(id: string): void {
     this.expandedId = this.expandedId === id ? null : id;
   }
 
   updateStatus(order: Order, status: string): void {
-    this.orderService.updateStatus(order.id, status).subscribe(updated => {
-      const idx = this.orders.findIndex(o => o.id === order.id);
+    this.orderService.updateStatus(order._id, status).subscribe(updated => {
+      const idx = this.orders.findIndex(o => o.id === order._id);
       if (idx >= 0) this.orders[idx] = updated;
     });
   }

@@ -27,9 +27,9 @@ import { CartItem } from '../../core/models/cart.model';
         <div class="cart-layout">
           <!-- Items -->
           <div class="cart-items">
-            @for (item of items; track item.product.id + item.size) {
+            @for (item of items; track item.product._id + item.size) {
               <div class="cart-item">
-                <div class="item-image" [routerLink]="['/product', item.product.id]">
+                <div class="item-image" [routerLink]="['/product', item.product._id]">
                   @if (item.product.imageUrls?.length) {
                     <img [src]="resolveUrl(item.product.imageUrls[0])" [alt]="item.product.name" />
                   } @else {
@@ -37,7 +37,7 @@ import { CartItem } from '../../core/models/cart.model';
                   }
                 </div>
                 <div class="item-details">
-                  <a [routerLink]="['/product', item.product.id]" class="item-name">{{ item.product.name }}</a>
+                  <a [routerLink]="['/product', item.product._id]" class="item-name">{{ item.product.name }}</a>
                   <p class="item-size">Size: {{ item.size }}</p>
                   <p class="item-price">{{ item.product.price | number:'1.2-2' }} {{ item.product.currency }}</p>
                   <div class="item-actions">
@@ -99,10 +99,10 @@ export class CartComponent implements OnInit {
   get totalItems(): number { return this.cart.count; }
 
   updateQty(item: CartItem, qty: number): void {
-    this.cart.updateQuantity(item.product.id, item.size, qty);
+    this.cart.updateQuantity(item.product._id, item.size, qty);
   }
 
   remove(item: CartItem): void {
-    this.cart.remove(item.product.id, item.size);
+    this.cart.remove(item.product._id, item.size);
   }
 }
